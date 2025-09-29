@@ -1,0 +1,21 @@
+name: Mirror to dev-unstable
+
+on:
+  push:
+    branches: [landmark-cactus]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Push to dev-unstable
+        run: |
+          git push origin landmark-cactus:dev-unstable --force
